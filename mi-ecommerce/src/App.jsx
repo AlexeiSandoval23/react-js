@@ -1,19 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./assets/components/Navbar/navbar";
+import ItemListContainer from "./assets/components/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./assets/components/ItemDetailContainer/ItemDetailContainer";
+import CartPage from "./assets/components/CartPage/CartPage.jsx";
 import './App.css'
-import Button from './assets/components/Button/Button'
-import NavBar from './assets/components/Navbar/navbar'
-import ItemListContainer from './assets/components/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
     <div>
       <NavBar />
-      <ItemListContainer greeting="¡Proyecto React Js!" />
-      <Button />
+      <Routes>
+        <Route path="/" element={<ItemListContainer greeting="¡Bienvenido a nuestra tienda!" />} />
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/product/:productId" element={<ItemDetailContainer />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
+      </Routes>
     </div>
   );
 }
 
-export default App
+export default App;
